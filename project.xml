@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+    <meta title="test"/>
+    <app main="Main" path="build" file="test"/>
+    <source path="src"/>
+    <source path="t"/>
+    <haxelib name="openfl"/>
+    <haxelib name="actuate"/>
+    <haxelib name="svg"/>
+</project>
