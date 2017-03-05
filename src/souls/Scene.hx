@@ -83,7 +83,9 @@ class Scene extends Sprite
             throw new ImageError('Image already exists: "$name"');
         }
 
-        var content:Dynamic = Util.coalesce(args.content, name);
+        var content:Dynamic = Reflect.hasField(args, "content")
+                            ? args.content : name;
+
         if (content != null) {
             if (Std.is(content, String)) {
                 args.content = souls.findAsset(content);
