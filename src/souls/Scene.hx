@@ -109,10 +109,13 @@ class Scene extends Sprite
             args.parent = parent;
         }
 
+        args.x = Util.coalesce(args.x, 0.0);
+        args.y = Util.coalesce(args.y, 0.0);
+
         var img = new Image(args);
         img.globalPos = localToGlobal(new Point(
-            args.x + img.content.width  * img.pivotX,
-            args.y + img.content.height * img.pivotY
+            args.x + img.actualWidth  * img.pivotX,
+            args.y + img.actualHeight * img.pivotY
         ));
 
         img.orig.x = img.x;

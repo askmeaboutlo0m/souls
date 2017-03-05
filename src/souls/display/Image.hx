@@ -62,7 +62,9 @@ class Image
     public var rel      (get, set):Point;
     public var parent   (get, set):DisplayObjectContainer;
 
-    public var onClick(default, set):MouseEvent -> Void;
+    public var onClick     (default, set  ):MouseEvent -> Void;
+    public var actualWidth (get,     never):Float;
+    public var actualHeight(get,     never):Float;
 
     // Can't extend Sprite or else Haxe generates invalid code for Flash.
     public var sprite       (default, null ):Sprite = new Sprite();
@@ -250,6 +252,15 @@ class Image
         }
 
         return onClick;
+    }
+
+
+    function get_actualWidth() {
+        return content == null ? 0.0 : content.width;
+    }
+
+    function get_actualHeight() {
+        return content == null ? 0.0 : content.height;
     }
 
 
