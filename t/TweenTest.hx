@@ -17,6 +17,7 @@ import souls.anim.Sequence;
 import souls.anim.SequenceBuilder;
 import souls.anim.SequenceManager;
 import souls.anim.step.Tween;
+import souls.Util.lazy;
 
 
 @:access(souls.anim.SequenceManager)
@@ -42,7 +43,7 @@ class TweenTest extends Case
             },
         ]);
 
-        new SequenceBuilder(sm).addStep(tween).start();
+        new SequenceBuilder(sm).addStep(lazy(tween)).start();
         is(sm.sequences.length, 1, "sequence is running");
         var seq = sm.sequences[0];
 
@@ -72,7 +73,7 @@ class TweenTest extends Case
             },
         ], 1.0);
 
-        new SequenceBuilder(sm).addStep(tween).start();
+        new SequenceBuilder(sm).addStep(lazy(tween)).start();
         is(sm.sequences.length, 1, "sequence is running");
         var seq = sm.sequences[0];
         seq.userData.counter = 0;

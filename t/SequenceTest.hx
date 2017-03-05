@@ -17,6 +17,7 @@ import souls.anim.Sequence;
 import souls.anim.SequenceBuilder;
 import souls.anim.SequenceManager;
 import souls.anim.Step;
+import souls.Util.lazy;
 
 
 private class TestStep implements Step
@@ -104,7 +105,7 @@ class SequenceTest extends Case
         var step = new TestStep(0.0, 1.0, 10);
         nok(sm.dirty, "manager does not start out dirty");
 
-        new SequenceBuilder(sm).addStep(step).start();
+        new SequenceBuilder(sm).addStep(lazy(step)).start();
         is(step.calls, 0,   "new single step has 0 calls");
         is(step.value, 0.0, "new single step has value 0.0");
         is(sm.sequences.length, 1, "manager has one sequence");
@@ -148,7 +149,7 @@ class SequenceTest extends Case
         var sb = new SequenceBuilder(sm);
 
         for (step in steps) {
-            sb.addStep(step);
+            sb.addStep(lazy(step));
             is(step.calls, 0, "step starts out with 0 calls");
         }
 
