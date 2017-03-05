@@ -18,6 +18,7 @@ package souls.anim;
 import souls.anim.step.Call;
 import souls.anim.step.Delay;
 import souls.anim.step.Frame;
+import souls.anim.step.Parallel;
 import souls.anim.step.Tween;
 import souls.display.Drawable;
 import souls.Scene;
@@ -85,6 +86,11 @@ class SequenceBuilder
             case Right(right): right;
         };
         return addStep(lazy(new Frame(topic, content, desugarRand(a, b))));
+    }
+
+    public function parallel(build:SequenceBuilder):SequenceBuilder
+    {
+        return addStep(lazy(new Parallel(build)));
     }
 
 
