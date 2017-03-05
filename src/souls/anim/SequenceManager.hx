@@ -46,13 +46,15 @@ class SequenceManager
 
 
     public function add(name:String, topic:Dynamic, steps:Array<Step>,
-                        runs:Int, complete:Null<Void -> Void>):Int
+                        runs:Int, complete:Null<Void -> Void>,
+                        userData:Dynamic):Int
     {
         if (name != null) {
             killByName(name);
         }
         var id  = ++counter;
-        var seq = new Sequence(id, name, topic, steps, runs, complete);
+        var seq = new Sequence(id, name, topic, steps,
+                               runs, complete, userData);
         dirty   = true;
         sequences.push(seq);
         return id;

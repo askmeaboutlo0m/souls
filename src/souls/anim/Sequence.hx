@@ -26,7 +26,7 @@ class Sequence
     public var runs    (default, null):Int;
     public var complete(default, null):Void -> Void;
 
-    public var userData(default, default):Dynamic = {};
+    public var userData(default, default):Dynamic;
     public var handled (default, default):Bool    = false;
     public var killedAt(default, null   ):Int     = -1;
 
@@ -35,7 +35,7 @@ class Sequence
 
 
     public function new(id:Int, name:String, topic:Dynamic, steps:Array<Step>,
-                        runs:Int, complete:Void -> Void)
+                        runs:Int, complete:Void -> Void, userData:Dynamic)
     {
         this.id       = id;
         this.name     = name == null ? '$id' : name;
@@ -43,6 +43,7 @@ class Sequence
         this.runs     = runs;
         this.complete = complete;
         this.steps    = steps;
+        this.userData = Util.coalesce(userData, {});
     }
 
 

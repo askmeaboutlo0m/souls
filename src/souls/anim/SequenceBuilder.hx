@@ -97,18 +97,19 @@ class SequenceBuilder
     }
 
 
-    function run(runs:Int, complete:Null<Void -> Void>):Int
+    function run(runs:Int, complete:Null<Void -> Void>, userData:Dynamic):Int
     {
-        return manager.add(name, topic, steps, runs, complete);
+        return manager.add(name, topic, steps, runs, complete, userData);
     }
 
-    public function loop(runs:Int = 0x3FFFFFFF, ?complete:Void -> Void):Int
+    public function loop(runs:Int = 0x3FFFFFFF, ?complete:Void -> Void,
+                         ?userData:Dynamic):Int
     {
-        return run(runs, complete);
+        return run(runs, complete, userData);
     }
 
-    public function start(?complete:Void -> Void):Int
+    public function start(?complete:Void -> Void, ?userData:Dynamic):Int
     {
-        return run(1, complete);
+        return run(1, complete, userData);
     }
 }
