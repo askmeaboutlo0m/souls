@@ -48,6 +48,7 @@ typedef ImageArgs = {
 
 class Image
 {
+    public var name    (default, null   ):String;
     public var content (default, default):Drawable;
     public var pivotX  (default, set    ):Float     = 0.0;
     public var pivotY  (default, set    ):Float     = 0.0;
@@ -79,7 +80,6 @@ class Image
     public var mouseChildren(get,     set  ):Bool;
     public var buttonMode   (get,     set  ):Bool;
     public var tabEnabled   (get,     set  ):Bool;
-    public var name         (get,     set  ):String;
     public var width        (get,     never):Float;
     public var height       (get,     never):Float;
     public var graphics     (get,     never):Graphics;
