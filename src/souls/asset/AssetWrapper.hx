@@ -266,4 +266,16 @@ class AssetWrapper
     {
         return tabEnabled(b);
     }
+
+
+    public function masksParent(b:Bool = true):AssetWrapper
+    {
+        asset.masksParent = b;
+        return this;
+    }
+
+    public inline function mp(b:Bool = true):AssetWrapper
+    {
+        return masksParent(b);
+    }
 }
