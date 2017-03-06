@@ -24,6 +24,7 @@ import souls.error.AssetError;
 import souls.Scene;
 import souls.Util.coalesce;
 import souls.Util.lambda;
+import souls.Util;
 
 #if yaml
 import yaml.Parser;
@@ -38,7 +39,7 @@ class AssetBuilder
 
     public function new()
     {
-        build();
+        Util.traced("build", build());
     }
 
     function build():Void {}
