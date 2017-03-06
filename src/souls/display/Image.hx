@@ -141,13 +141,13 @@ class Image
 
     function set_pivotX(px:Float):Float
     {
-        y += (px - pivotX) * (content == null ? 0.0 : content.width);
+        x += (px - pivotX) * actualWidth;
         return pivotX = px;
     }
 
     function set_pivotY(py:Float):Float
     {
-        y += (py - pivotY) * (content == null ? 0.0 : content.height);
+        y += (py - pivotY) * actualHeight;
         return pivotY = py;
     }
 
