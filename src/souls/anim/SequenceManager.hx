@@ -15,6 +15,7 @@
  */
 package souls.anim;
 
+import haxe.ds.ArraySort;
 import souls.Util.lambda;
 
 
@@ -135,7 +136,7 @@ class SequenceManager
             s.handled = true;
         }
 
-        ts.sort(cmpTimed);
+        ArraySort.sort(ts, cmpTimed);
         dirty = false;
 
         while (!bail && ts.length > 0) {
@@ -146,7 +147,7 @@ class SequenceManager
                         s.handled = true;
                     }
                 }
-                ts.sort(cmpTimed);
+                ArraySort.sort(ts, cmpTimed);
                 dirty = false;
             }
 
