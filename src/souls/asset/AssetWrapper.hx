@@ -15,6 +15,8 @@
  */
 package souls.asset;
 
+import souls.Util.lambda;
+
 
 class AssetWrapper
 {
@@ -50,6 +52,15 @@ class AssetWrapper
     public function remove():AssetWrapper
     {
         builder.remove(asset.name);
+        return this;
+    }
+
+    public function like(name:String):AssetWrapper
+    {
+        var other = builder.edit(name).asset;
+        for (field in Reflect.fields(other).filter(lambda(_ != "name"))) {
+            Reflect.setField(asset, field, Reflect.field(other, field));
+        }
         return this;
     }
 
