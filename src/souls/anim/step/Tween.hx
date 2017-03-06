@@ -45,15 +45,17 @@ class Tween extends StepBase
 
     override function init(u:Dynamic):Int
     {
-        ms = time == null ? 0 : Math.round(time.evaluate(u) * 1000.0);
-        e  = ease == null ? linear : ease.evaluate(u);
+        return ms = time == null ? 0 : Math.round(time.evaluate(u) * 1000.0);
+    }
 
+
+    override function build(u:Dynamic):Void
+    {
+        e = ease == null ? linear : ease.evaluate(u);
         for (key in fields.keys()) {
             src[key] = Reflect.getProperty(topic, key);
             dst[key] = fields[key].evaluate(u);
         }
-
-        return ms;
     }
 
 

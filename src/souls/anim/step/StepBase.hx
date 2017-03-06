@@ -22,6 +22,7 @@ import souls.Util;
 class StepBase implements Step
 {
     var runs :Int = -1;
+    var built:Int = -1;
     var total:Int;
     var spent:Int;
 
@@ -30,6 +31,11 @@ class StepBase implements Step
     {
         // no time taken unless overridden
         return 0;
+    }
+
+    function build(u:Dynamic):Void
+    {
+        // do nothing unless overridden
     }
 
     function apply(k:Float):Void
@@ -52,6 +58,10 @@ class StepBase implements Step
             length    : length,
             completed : spent + length >= total,
             animation : function (frac:Float):Void {
+                if (built != runs) {
+                    build(seq.userData);
+                    built = runs;
+                }
                 apply(total == 0 ? 1.0 : (spent + length * frac) / total);
                 spent += length;
             },

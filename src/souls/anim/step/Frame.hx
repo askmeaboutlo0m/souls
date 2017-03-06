@@ -35,10 +35,9 @@ class Frame extends Delay
     }
 
 
-    override function init(u:Dynamic):Int
+    override function build(u:Dynamic):Void
     {
         drawn = false;
-        return super.init(u);
     }
 
 
