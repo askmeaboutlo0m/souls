@@ -19,19 +19,27 @@ import openfl.Assets;
 import openfl.text.Font;
 import openfl.text.TextField;
 import openfl.text.TextFieldAutoSize;
+import openfl.text.TextFieldType;
 import openfl.text.TextFormat;
 import souls.Util.coalesce;
 
 typedef TextHelperArgs = {
     @:optional var x         :Float;
     @:optional var y         :Float;
+    @:optional var width     :Float;
+    @:optional var height    :Float;
     @:optional var alpha     :Float;
     @:optional var font      :String;
     @:optional var size      :Int;
+    @:optional var leading   :Int;
     @:optional var text      :String;
     @:optional var autoSize  :TextFieldAutoSize;
+    @:optional var type      :TextFieldType;
     @:optional var selectable:Bool;
+    @:optional var multiline :Bool;
+    @:optional var wordWrap  :Bool;
     @:optional var color     :Int;
+    @:optional var background:Int;
     @:optional var bold      :Bool;
     @:optional var italic    :Bool;
     @:optional var underline :Bool;
@@ -53,6 +61,7 @@ class TextHelper
         }
 
         format.size      = coalesce(args.size,      12      );
+        format.leading   = coalesce(args.leading,   null    );
         format.color     = coalesce(args.color,     0x000000);
         format.bold      = coalesce(args.bold,      false   );
         format.italic    = coalesce(args.italic,    false   );
@@ -62,11 +71,29 @@ class TextHelper
 
         field.defaultTextFormat = format;
 
-        field.alpha      = coalesce(args.alpha,      1.0  );
-        field.autoSize   = coalesce(args.autoSize,   LEFT );
-        field.selectable = coalesce(args.selectable, false);
-        field.x          = coalesce(args.x,          0.0  );
-        field.y          = coalesce(args.y,          0.0  );
+        field.alpha      = coalesce(args.alpha,      1.0    );
+        field.autoSize   = coalesce(args.autoSize,   LEFT   );
+        field.type       = coalesce(args.type,       DYNAMIC);
+        field.selectable = coalesce(args.selectable, false  );
+        field.multiline  = coalesce(args.multiline,  false  );
+        field.wordWrap   = coalesce(args.wordWrap,   false  );
+        field.x          = coalesce(args.x,          0.0    );
+        field.y          = coalesce(args.y,          0.0    );
+
+        field.mouseEnabled = field.type == INPUT || field.selectable;
+
+        if (args.width != null) {
+            field.width = args.width;
+        }
+
+        if (args.height != null) {
+            field.height = args.height;
+        }
+
+        if (args.background != null) {
+            field.background      = true;
+            field.backgroundColor = args.background;
+        }
 
         field.text = coalesce(coalesce(args.text, args.url), "");
 
