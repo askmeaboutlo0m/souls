@@ -127,6 +127,10 @@ class Image
         setArgs(content, x, y, pivotX, pivotY, alpha, rotation, scaleX,
                 scaleY, scale, visible, mouseEnabled, mouseChildren,
                 buttonMode, tabEnabled, name, userData);
+
+        // pivotX and pivotY modify the x and y positions
+        orig.x = x;
+        orig.y = y;
     }
 
 
