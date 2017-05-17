@@ -62,7 +62,8 @@ class StepBase implements Step
                     build(seq.userData);
                     built = runs;
                 }
-                apply(total == 0 ? 1.0 : (spent + length * frac) / total);
+                var t = total == 0 ? 1.0 : (spent + length * frac) / total;
+                apply(Math.min(t, 1.0));
                 spent += length;
             },
         };
